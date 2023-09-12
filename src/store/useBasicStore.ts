@@ -1,5 +1,3 @@
-// import { defineStore } from 'pinia';
-//import setting from '@/settings'
 export const useBasicStore = defineStore('useBasicStore', {
      state: () => {
           return {
@@ -12,6 +10,9 @@ export const useBasicStore = defineStore('useBasicStore', {
      getters: {
           getVisitedViews(state) {
                return state.visitedViews;
+          },
+          getCachedViews(): string[] {
+               return Array.from(this.cachedViews)
           }
      },
      actions: {
@@ -41,7 +42,6 @@ export const useBasicStore = defineStore('useBasicStore', {
           delVisitedView(view: any) {
                return new Promise((resolve) => {
                     this.$patch((state: any) => {
-                         //匹配view.path元素将其删除
                          for (const [i, v] of state.visitedViews.entries()) {
                               if (v.path === view.path) {
                                    state.visitedViews.splice(i, 1)

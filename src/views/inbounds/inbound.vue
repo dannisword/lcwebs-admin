@@ -4,7 +4,6 @@ import { useBasicStore } from "../../store/useBasicStore";
 import { storeToRefs } from "pinia";
 import { routeHandle } from "../../hooks/route-handle";
 import { pageHandle } from "../../hooks/page-handle";
-import { httpOperations } from "../../utils/http-operations";
 import * as base from "../../utils";
 import * as models from "../models";
 import jsonData from "./inbound.json";
@@ -75,21 +74,7 @@ const onLoad = () => {
   state.params.createEndDateTime = base.format(state.nowDate[1]);
 
   const query = base.URLSearchParams(state.params);
-  const url = `/api/inbound/search?${query}`;
-  httpOperations
-    .get(url, "")
-    .then((response: any) => {
-      page.container.isLoading = false;
-      if (response.successful) {
-        //base.handleResponse(response.message);
-        master.records = response.message.content;
-        // 處理分頁
-        state.pageable = response.message;
-      }
-    })
-    .catch((e) => {
-      page.container.isLoading = false;
-    });
+
 };
 
 const onClear = () => {

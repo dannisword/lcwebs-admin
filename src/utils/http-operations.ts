@@ -27,7 +27,7 @@ let httpOperations = {
       * @param {*} url
       * @returns
       */
-     get(url: any, params: any) {
+     get(url: any, params: any | undefined) {
           return new Promise((resolve, reject) => {
                request({
                     url: url,
@@ -92,7 +92,6 @@ let httpOperations = {
                          });
                     })
                     .catch((e: any) => {
-                         // snackbar.alert(e.message);
                          resolve({ successful: false, message: e.message });
                     });
           });
@@ -118,7 +117,6 @@ let httpOperations = {
                          });
                     })
                     .catch((e) => {
-                         //snackbar.alert(e.message);
                          resolve({ successful: false, message: e.message });
                     });
           });

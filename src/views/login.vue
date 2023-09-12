@@ -10,7 +10,7 @@ const app = useApp();
 import { pageHandle } from "../hooks/page-handle";
 const page = pageHandle();
 // api method
-import { httpOperations } from "../utils/http-operations";
+
 import { warning, success } from "../utils";
 
 const validateUsername = (rule: any, value: any, callback: any) => {

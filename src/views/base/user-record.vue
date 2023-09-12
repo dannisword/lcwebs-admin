@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ElTable } from "element-plus";
-import { httpOperations } from "../../utils/http-operations";
 import { pageHandle } from "../../hooks/page-handle";
 import {
   clone,
@@ -88,35 +87,12 @@ onBeforeMount(() => {
   roles.custom = jsonData.roles_custom;
   roles.records = jsonData.roles_records;
 
-  const url = "/api/sysRole/getSysRoles";
-  httpOperations.get(url, {}).then((response: any) => {
-    if (response.successful == true) {
-      roles.records = response.data.data.map((x: any) => ({
-        sysRoleId: x.sysRoleId,
-        disName: x.disName,
-      }));
-    }
-  });
 
   load();
 });
 
 const load = () => {
-  page.container.isLoading = true;
-  const url = "/api/sysUserSetting/getSysUsers";
-  httpOperations
-    .get(url, params)
-    .then((response: any) => {
-      if (response.successful == true) {
-        handleResponse(response.data, params);
-        master.records = response.data.data;
-        pageable.totalRow = response.data.totalRow;
-      }
-      page.container.isLoading = false;
-    })
-    .catch((e) => {
-      page.container.isLoading = false;
-    });
+
 };
 
 const add = () => {
@@ -132,44 +108,9 @@ const clear = () => {
 };
 
 const tableAction = async (event: any, val: any) => {
-  user = val;
-  // 編輯
-  if (event == "onEdit") {
-    userModal.title = "Edit User";
-    isUpdate.value = true;
-    userModal.visible = true;
-    resetForm();
-    const data = {
-      sysUserId: val.sysUserId,
-      disName: val.disName,
-      password: val.password,
-      enabled: val.enabled,
-    };
-    Object.assign(entity, data);
-  }
 
-  // 角色權限
-  if (event == "onPrivilege") {
-    roleModal.visible = true;
-    const url = "/api/sysUserSetting/getSysUser";
-    httpOperations
-      .get(url, { sysUserId: val.sysUserId })
-      .then((response: any) => {
-        const data = response.data.userDetail.map((x: any) => ({
-          sysRoleId: x.sysRoleId,
-          disName: x.disName,
-        }));
 
-        for (const record of roles.records) {
-          const item = data.find((x: any) => x.sysRoleId == record.sysRoleId);
-          if (item) {
-            multipleTableRef.value!.toggleRowSelection(record, true);
-          } else {
-            multipleTableRef.value!.toggleRowSelection(record, false);
-          }
-        }
-      });
-  }
+
 };
 
 const selectionRoles = (val: any) => {
@@ -177,72 +118,12 @@ const selectionRoles = (val: any) => {
 };
 
 const userModalClose = (val: any) => {
-  if (val.success == false || val.close == true) {
-    userModal.visible = false;
-    return;
-  }
-  // 更新
-  if (isUpdate.value == true) {
-    const isValid = handleValid("password");
-    if (isValid == false) {
-      return;
-    }
-    const data = {
-      sysUserId: entity.sysUserId,
-      disName: entity.disName,
-      enabled: entity.enabled,
-    };
-    const url = "/api/sysUserSetting/updateUser";
-    httpOperations.post(url, data).then((response: any) => {
-      if (response.successful == true) {
-        userModal.visible = false;
-        load();
-      }
-    });
-  } else {
-    const isValid = handleValid();
-    if (isValid == false) {
-      return;
-    }
-    const url = "/api/sysUserSetting/createUser";
-    const data = {
-      sysUserId: entity.sysUserId,
-      disName: entity.disName,
-      password: entity.password,
-      enabled: 1,
-    };
-    httpOperations.post(url, data).then((response: any) => {
-      if (response.successful == true) {
-        userModal.visible = false;
-        load();
-      }
-    });
-  }
+
+
 };
 
 const roleModalClose = (val: any) => {
-  if (val.success == false || val.close == true) {
-    roleModal.visible = false;
-    return;
-  }
-  // 設定權限
-  if (selectedRoles.length > 0) {
-    const url = "/api/sysUserSetting/updateSysUserRole";
-    const data = {
-      sysUserId: user.sysUserId,
-      roleList: selectedRoles.map((x: any) => x.sysRoleId.toString()),
-    };
-    httpOperations.post(url, data).then((response: any) => {
-      if (response.successful) {
-        success("Role Settings Successful");
-      } else {
-        warning(response.msg);
-      }
-    });
-    roleModal.visible = false;
-  } else {
-    roleModal.visible = false;
-  }
+
 };
 
 const resetForm = () => {

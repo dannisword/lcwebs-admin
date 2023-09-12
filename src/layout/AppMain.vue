@@ -1,38 +1,55 @@
 <script lang="ts" setup>
-// import { computed, watch } from "vue";
-// import { storeToRefs } from "pinia";
-
-//import { useRoute } from "vue-router";
 const route = useRoute();
 
 import { useBasicStore } from "../store/useBasicStore";
-const { cachedViews, getVisitedViews } = storeToRefs(useBasicStore());
+const { cachedViews, getCachedViews } = storeToRefs(useBasicStore());
 const basic = useBasicStore();
 const key = computed(() => route.path);
 
 let cacheGroup = [];
-
+const views = computed(() => {
+  return cachedViews.value.join(",");
+});
 watch(
   () => route.name,
   (val) => {
     const routerLevel = route.matched.length;
     basic.addVisitedView(route);
-    // cacheGroup.push()
   },
   { immediate: true }
 );
+const wrapperMap = new Map();
+const formatComponentInstance = (component: any, route: any) => {
+  let wrapper;
+  if (component) {
+    const wrapperName = route.path;
+    if (wrapperMap.has(wrapperName)) {
+      wrapper = wrapperMap.get(wrapperName);
+    } else {
+      wrapper = {
+        name: wrapperName,
+        render() {
+          return h(component);
+        },
+      };
+      wrapperMap.set(wrapperName, wrapper);
+    }
+  }
+  return h(wrapper);
+};
 </script>
 
 <template>
   <div class="app-main">
-    <el-container>
-    <router-view v-slot="{ Component }">
-      <!-- no transition -->
-      <keep-alive :include="cachedViews">
-        <component :is="Component" :key="key" />
+    <!-- no transition -->
+    <router-view v-slot="{ Component, route }">
+      <keep-alive :include="getCachedViews">
+        <component
+          :is="formatComponentInstance(Component, route)"
+          :key="route.fullPath"
+        />
       </keep-alive>
     </router-view>
-    </el-container>
   </div>
 </template>
 

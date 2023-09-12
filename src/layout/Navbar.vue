@@ -1,20 +1,30 @@
 <script lang="ts" setup>
-import * as store from "../store";
-import * as page from "../utils";
-import { useApp } from "../store/useApp";
-const app = useApp();
+import { useApp, useBasicStore } from "../store";
+
 import { routeHandle } from "../hooks/route-handle";
+const app = useApp();
 const { navigation } = routeHandle();
 // emit 將資料傳遞到父元件
 const emit = defineEmits(["on-toggle"]);
-console.log(app.user.userName);
+const state = reactive({
+  dc: {} as any,
+  dcs: [] as any[],
+});
+
 const toggleClick = () => {
   emit("on-toggle");
 };
 
+onBeforeMount(() => {
+
+});
 const onLogout = () => {
-  store.useApp().logout();
+  useApp().logout();
+  useBasicStore().delAllVisitedViews();
   navigation("/login");
+};
+const selectChange = (e: any) => {
+
 };
 </script>
 
@@ -29,7 +39,6 @@ const onLogout = () => {
 
     <!-- drop down-->
     <div class="right-menu">
-
       <el-dropdown trigger="click" size="medium">
         <div class="user-icon">
           {{ app.user.userName }}
@@ -50,7 +59,7 @@ const onLogout = () => {
 
 <style lang="scss" scoped>
 .navbar {
-  //   height: var(--nav-bar-height);
+  height: var(--nav-bar-height);
   overflow: hidden;
   position: relative;
   background: var(--nav-bar-background);
@@ -58,10 +67,9 @@ const onLogout = () => {
   z-index: 1;
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  flex: auto;
+  padding: 1rem;
 }
 
 .right-menu {
@@ -74,7 +82,7 @@ const onLogout = () => {
   align-items: center;
 }
 .user-icon {
-  font-size: 18px;
+  font-size: 16px;
 }
 //logo
 .avatar-wrapper {

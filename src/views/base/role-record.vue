@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ElTable } from "element-plus";
-import { httpOperations } from "../../utils/http-operations";
 import { pageHandle } from "../../hooks/page-handle";
 import {
   clone,
@@ -88,22 +87,8 @@ onBeforeMount(() => {
 });
 
 const load = () => {
-  page.container.isLoading = true;
+  //page.container.isLoading = true;
 
-  const url = "/api/sysRole/getSysRoles";
-  httpOperations
-    .get(url, params)
-    .then((response: any) => {
-      if (response.successful == true) {
-        handleResponse(response.data, params);
-        master.records = response.data.data;
-        pageable.totalRow = response.data.totalRow;
-      }
-      page.container.isLoading = false;
-    })
-    .catch((e) => {
-      page.container.isLoading = false;
-    });
 };
 
 const add = () => {
@@ -119,96 +104,13 @@ const clear = () => {
 
 const tableAction = (event: any, val: any) => {
   role = val;
-  if (event == "onEdit") {
-    isUpdate.value = true;
-    roleModal.visible = true;
-    resetForm();
-    const data = {
-      sysRoleId: val.sysRoleId,
-      disName: val.disName,
-      enabled: val.enabled,
-    };
-    Object.assign(entity, data);
-  }
 
-  if (event == "onMenu") {
-    for (const func of funcList) {
-      func.authjson = "read";
-    }
-    // 角色權限
-    let url = "/api/sysRole/getSysRole";
-    httpOperations
-      .get(url, { sysRoleId: role.sysRoleId })
-      .then((response: any) => {
-        if (response.successful == true) {
-          const data = response.data.roleDetail.map((x: any) => ({
-            func: x.func,
-            authjson: x.authjson,
-          }));
-          console.log(data);
-          for (const elm of funcList) {
-            const item = data.find((x: any) => x.func == elm.funcName);
 
-            if (item) {
-              multipleTableRef.value!.toggleRowSelection(elm, true);
-            } else {
-              multipleTableRef.value!.toggleRowSelection(elm, false);
-            }
-          }
-        }
-      });
 
-    funcModal.visible = true;
-  }
 };
 
 const roleModalClose = (val: any) => {
-  if (val.success == false || val.close == true) {
-    roleModal.visible = false;
-    return;
-  }
-  // 更新
-  if (isUpdate.value == true) {
-    const isValid = handleValid();
-    if (isValid == false) {
-      return;
-    }
-    const data = {
-      sysRoleId: entity.sysRoleId,
-      disName: entity.disName,
-      enabled: entity.enabled,
-    };
-    const url = "/api/sysRole/updateRole";
-    httpOperations.post(url, data).then((response: any) => {
-      if (response.successful == true) {
-        roleModal.visible = false;
-        success("更新角色成功！");
-        load();
-      } else {
-        warning(response.msg);
-      }
-    });
-  } else {
-    const isValid = handleValid();
-    if (isValid == false) {
-      return;
-    }
-    const url = "api/sysRole/createRole";
-    const data = {
-      sysRoleId: 0,
-      disName: entity.disName,
-      enabled: 1,
-    };
-    httpOperations.post(url, data).then((response: any) => {
-      if (response.successful == true) {
-        success("新增角色成功！");
-        roleModal.visible = false;
-        load();
-      } else {
-        warning(response.msg);
-      }
-    });
-  }
+
 };
 
 const funcModalClose = (val: any) => {
@@ -231,14 +133,7 @@ const funcModalClose = (val: any) => {
     roleFuncList: funcs,
   };
   const url = "/api/sysRole/updateSysRolefunc";
-  httpOperations.post(url, data).then((response: any) => {
-    console.log(response);
-    if (response.successful == true) {
-      success("設定角色權限成功！");
-    } else {
-      warning("設定角色權限失敗！");
-    }
-  });
+
   funcModal.visible = false;
 };
 

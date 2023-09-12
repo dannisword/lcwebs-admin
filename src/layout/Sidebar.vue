@@ -1,14 +1,17 @@
 <script setup lang="ts">
+import { reactive, toRefs, watch } from "vue";
+import sidebarlogo from "../assets/logo-1.svg";
+// import sidebarlogo from "../assets/itri.jpg";
 import { useI18n } from "vue-i18n";
 import { storeToRefs } from "pinia";
 import { routeHandle } from "../hooks/route-handle";
 import * as store from "../store";
-import data from "../views/data.json";
 const app = store.useApp();
 const route = routeHandle();
 const { t, locale } = useI18n();
 const { lang, currentLang } = storeToRefs(store.useApp());
 const { collapse, user } = storeToRefs(app);
+
 // 選單
 watch(collapse, (val) => {});
 // 語系
@@ -24,6 +27,8 @@ watch(
   },
   { deep: true }
 );
+
+onBeforeMount(() => {});
 // prop define
 defineProps({
   //是否折叠
@@ -31,13 +36,14 @@ defineProps({
     type: Boolean,
     required: true,
   },
+  source: {
+    required: true,
+  },
 });
 
-const nav = (val: any) => {
-  console.log(val);
-  if (val) {
-    route.navigation(val.path);
-  }
+const onNav = (val: any) => {
+  const path = `/${val.index}`;
+  route.navigation(path);
 };
 const handleOpen = (key: string, keyPath: string[]) => {
   //console.log(key, keyPath);
@@ -48,40 +54,48 @@ const handleClose = (key: string, keyPath: string[]) => {
 </script>
 
 <template>
-  <div id="Sidebar">
+  <div>
     <!-- logo -->
-    <!-- <div class="sidebar-logo-container" :class="{ collapse: collapse }"> -->
-    <!-- <transition name="sidebar-logo-fade"> -->
-    <!--  折疊顯示   -->
-    <!-- <router-link class="sidebar-logo-link" to="/"> -->
-    <!-- <img class="sidebar-logo" :src="sidebarlogo" /> -->
-    <!-- <h1 class="sidebar-title" v-if="!collapse">{{ $t("title") }}</h1> -->
-    <!-- </router-link> -->
-    <!-- </transition> -->
-    <!-- </div> -->
+    <div class="sidebar-logo-container" :class="{ collapse: collapse }">
+      <transition name="sidebar-logo-fade">
+        <!--  折疊顯示   -->
+        <router-link class="sidebar-logo-link" to="/">
+          <img class="sidebar-logo" :src="sidebarlogo" />
+          <h1 class="sidebar-title" v-if="!collapse">{{ $t("title") }}</h1>
+        </router-link>
+      </transition>
+    </div>
   </div>
-
-  <el-scrollbar wrap-class="scrollbar-wrapper">
-    <el-menu default-active="2" @open="handleOpen" @close="handleClose">
-      <el-sub-menu
-        :key="menu.index"
-        :index="String(menu.index)"
-        v-for="menu in data.menus"
-      >
-        <template #title>
-          <!-- <el-icon><location /></el-icon> -->
-          <span class="subtitle">{{ menu.funcName }}</span>
-        </template>
-        <el-menu-item
-          class="menu-item"
-          :key="item.index"
-          :index="String(item.index)"
-          v-for="item in menu.subFuncs"
-          @click="nav(item)"
-        >
-          <template #title>{{ item.funcName }}</template>
+  <el-scrollbar>
+    <el-menu
+      :collapse="collapse"
+      :collapse-transition="true"
+      default-active="2"
+      @open="handleOpen"
+      @close="handleClose"
+    >
+      <div v-for="menu in (source as any)">
+        <el-menu-item v-if="menu.hasChilds == false" :index="menu.index">
+          <el-icon><location /></el-icon>
+          <span :class="collapse ? 'hide-title' : ''">{{ menu.name }}</span>
         </el-menu-item>
-      </el-sub-menu>
+
+        <el-sub-menu class="menu-content" v-else :index="menu.index">
+          <template #title>
+            <el-icon><location /></el-icon>
+            <span :class="collapse ? 'hide-title' : ''" slot="title">
+              {{ menu.name }}
+            </span>
+          </template>
+          <el-menu-item
+            v-for="sub in menu.subs"
+            :index="sub.index"
+            @click="onNav(sub)"
+          >
+            <span>{{ sub.name }}</span>
+          </el-menu-item>
+        </el-sub-menu>
+      </div>
     </el-menu>
   </el-scrollbar>
 </template>
@@ -94,7 +108,11 @@ const handleClose = (key: string, keyPath: string[]) => {
 }
 ul.el-menu.el-menu--vertical {
   border-right: 0;
+  .li.el-menu-item {
+    font-size: x-small;
+  }
 }
+
 .sidebar-logo-container {
   position: relative;
   /* width: 100%; */
@@ -133,19 +151,29 @@ ul.el-menu.el-menu--vertical {
       width: var(--sidebar-logo-width);
     }
   }
+}
 
-  .scrollbar-wrapper {
-    overflow-x: hidden !important;
+.hide-title {
+  display: none !important;
+}
+//
+.menu-content {
+  overflow: hidden;
+
+  & > .el-submenu {
+    //padding: 0 !important;
+
+    .svg-icon {
+      margin-left: 20px;
+    }
+
+    .sub-el-icon {
+      margin-left: 19px;
+    }
+
+    .el-submenu__icon-arrow {
+      display: none;
+    }
   }
-}
-
-.subtitle {
-  color: darkblue;
-  font-weight: 900;
-}
-.menu-item.el-menu-item.is-active {
-  color: brown !important;
-  font-weight: 600;
-  text-decoration: underline;
 }
 </style>
