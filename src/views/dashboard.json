@@ -1,0 +1,92 @@
+{
+     "master_columns": [
+          {
+               "prop": "seq",
+               "label": "項次",
+               "sortable": false,
+               "fixed": true,
+               "minWidth": 80,
+               "align": "left"
+          },
+          {
+               "prop": "sysOrderNo",
+               "label": "入庫單號碼",
+               "sortable": true,
+               "fixed": true,
+               "minWidth": 200,
+               "align": "left"
+          },
+          {
+               "prop": "createTime",
+               "label": "建立時間",
+               "sortable": true,
+               "fixed": false,
+               "minWidth": 180,
+               "align": "left"
+          },
+          {
+               "prop": "subCarrierId",
+               "label": "子棧板編號",
+               "sortable": true,
+               "fixed": false,
+               "minWidth": 160,
+               "align": "left"
+          },
+          {
+               "prop": "carrierId",
+               "label": "母棧板編號",
+               "sortable": true,
+               "fixed": false,
+               "minWidth": 160,
+               "align": "left"
+          },
+          {
+               "prop": "weight",
+               "label": "重量",
+               "sortable": true,
+               "fixed": false,
+               "minWidth": 120,
+               "align": "left"
+          },
+          {
+               "prop": "docStatusLabel",
+               "label": "單據狀態",
+               "sortable": false,
+               "fixed": false,
+               "minWidth": 120,
+               "align": "left"
+          },
+          {
+               "prop": "receiveSource",
+               "label": "命令來源",
+               "sortable": false,
+               "fixed": false,
+               "minWidth": 120,
+               "align": "left"
+          }
+     ],
+     "master_custom": {
+          "prop": "action",
+          "label": "動作",
+          "minWidth": 180,
+          "align": "center",
+          "fixed": "right",
+          "actions": [
+               {
+                    "name": "檢視明細",
+                    "type": "success",
+                    "event": "onView",
+                    "icon": "Document",
+                    "isShow": true
+               }
+          ]
+     },
+     "master_records": [
+          {
+               "seq": 1
+          },
+          {
+               "seq": 2
+          }
+     ]
+}

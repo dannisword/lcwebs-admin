@@ -1,0 +1,54 @@
+@import './variable.scss';
+@import './table.scss';
+@import './sidebar.scss';
+@import './layout.scss';
+
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light dark;
+    /* color: rgba(255, 255, 255, 0.87);*/
+    /* background-color: --dark-bg-color; */
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+html {
+    margin: 0;
+    height: 100%;
+}
+
+body {
+    font-family: Inter, system-ui, Avenir, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+        "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    --el-font-size-base: 16px;
+    --el-menu-icon-width: 48px;
+    // --tags-view-item-background: #9E9E9E;
+    --tags-view-item-active-background: #9E9E9E;
+    --tags-view-item-active-border-color: #b488e5;
+    --tags-view-item-active-color: #4f3170;
+    height: 100%;
+}
+
+#app {
+    height: 100%;
+}
+
+a {
+    color: var(--ep-color-primary);
+}
+
+code {
+    border-radius: 2px;
+    padding: 2px 4px;
+    background-color: var(--ep-color-primary-light-9);
+    color: var(--ep-color-primary);
+}

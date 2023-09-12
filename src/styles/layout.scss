@@ -1,0 +1,68 @@
+.common-layout {
+
+     .el-header,
+     .el-footer,
+     .el-main,
+     .el-aside {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+     }
+
+     .el-header,
+     .el-footer {
+          /*--el-color-primary-light-7 */
+          background-color: var(--el-color-primary-light-7);
+          color: var(--el-text-color-primary);
+          text-align: center;
+     }
+
+     .el-aside {
+          background-color: var(--el-color-primary-light-8);
+          color: var(--el-text-color-primary);
+          text-align: center;
+     }
+
+     .el-main {
+          background-color: var(--el-color-primary-light-9);
+          color: var(--el-text-color-primary);
+          text-align: center;
+
+          height: 150px;
+     }
+
+
+}
+
+.form-container {
+     width: 100%;
+     display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: space-between;
+     /* border: solid;*/
+     /*border-color: black;*/
+}
+
+.form-start {
+     flex: 1;
+     margin-top: 8px;
+     display: flex;
+     justify-content: start;
+     align-items: center;
+     min-width: 100px;
+     font-size: larger;
+     font-weight: bold;
+}
+
+.form-end {
+     flex: 1;
+     margin-top: 8px;
+     display: flex;
+     justify-content: end;
+     align-items: end;
+}
+
+.el-col {
+     margin-left: 10px;
+}

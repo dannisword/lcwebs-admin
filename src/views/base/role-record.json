@@ -1,0 +1,59 @@
+{
+     "master_columns": [
+          {
+               "prop": "seq",
+               "label": "Seq",
+               "sortable": false,
+               "fixed": true,
+               "minWidth": 80,
+               "align": "left"
+          },
+          {
+               "prop": "sysRoleId",
+               "label": "Role ID",
+               "sortable": false,
+               "fixed": false,
+               "minWidth": 180,
+               "align": "left"
+          },
+          {
+               "prop": "disName",
+               "label": "Role Name",
+               "sortable": true,
+               "fixed": false,
+               "minWidth": 180,
+               "align": "left"
+          },
+          {
+               "prop": "enabled",
+               "label": "Enable",
+               "type": "STATUS",
+               "sortable": false,
+               "fixed": false,
+               "minWidth": 120,
+               "align": "left"
+          }
+     ],
+     "master_custom": {
+          "prop": "action",
+          "label": "Action",
+          "minWidth": 180,
+          "align": "center",
+          "fixed": "right",
+          "actions": [
+               {
+                    "name": "Edit",
+                    "type": "primary",
+                    "event": "onEdit",
+                    "icon": "Edit"
+               },
+               {
+                    "name": "Menu",
+                    "type": "primary",
+                    "event": "onMenu",
+                    "icon": "Menu"
+               }
+          ]
+     },
+     "master_records": []
+}

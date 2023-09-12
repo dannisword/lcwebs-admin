@@ -1,0 +1,106 @@
+:root {
+  --dark-bg-color: #293146;
+
+  /* left menu start */
+  --left-menu-border-color: '#eee';
+
+  --left-menu-max-width: 200px;
+
+  --left-menu-min-width: 64px;
+
+  --left-menu-bg-color: #001529;
+
+  --left-menu-bg-light-color: #0f2438;
+
+  --left-menu-bg-active-color: var(--el-color-primary);
+
+  --left-menu-text-color: #bfcbd9;
+
+  --left-menu-text-active-color: #fff;
+
+  --left-menu-collapse-bg-active-color: var(--el-color-primary);
+  /* left menu end */
+
+  /* logo start */
+  --logo-height: 50px;
+
+  --logo-title-text-color: #fff;
+
+  --logo-border-color: 'inherit';
+  /* logo end */
+
+  /* header start */
+  --top-header-bg-color: '#fff';
+
+  --top-header-text-color: 'inherit';
+
+  --top-header-hover-color: #f6f6f6;
+
+  --top-tool-height: var(--logo-height);
+
+  --top-tool-p-x: 0;
+
+  --top-tool-border-color: #eee;
+
+  --tags-view-height: 35px;
+
+  --tags-view-border-color: #eee;
+  /* header start */
+
+  /* tab menu start */
+  --tab-menu-max-width: 80px;
+
+  --tab-menu-min-width: 30px;
+
+  --tab-menu-collapse-height: 36px;
+
+  --tab-menu-border-color: #eee;
+  /* tab menu end */
+
+  --app-content-padding: 20px;
+
+  --app-content-bg-color: #f5f7f9;
+
+  --app-footer-height: 50px;
+
+  --transition-time-02: 0.2s;
+
+  /* nav-bar */
+  --nav-bar-height: 50px;
+  --nav-bar-background: #fff;
+  --nav-bar-box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  --nav-bar-right-menu-background: #fff;
+
+  --el-menu-bg-color: #EEEEEE;
+  --el-menu-hover-color: #fff;
+
+  --el-sub-menu-active-text-color: #fff;
+  --el-sub-menu-bg-color: #EEEEEE;
+
+  --el-sub-menu-hover-color: #fff;
+  /*  sideBar */
+
+
+
+  --sideBar-switch-duration: 0.2s;
+  --sideBar-width: 210px;
+  --side-bar-border-right-color: #eee;
+  --sidebar-el-icon-size: 20px;
+  --sidebar-logo-background: #fff;
+  --sidebar-logo-color: #ff9901;
+  --sidebar-logo-width: 64px;
+  --sidebar-logo-height: 32px;
+  --sidebar-logo-title-color: #757575;
+  --side-bar-border-right-color: #eee;
+
+  /* AppMain.vue */
+  --app-main-padding: 10px;
+  --app-main-background: #fff;
+
+  /**/
+  //logo切换动画时长
+  --logo-switch-duration: 1s;
+
+
+  --el-menu-icon-width: 80px;
+}

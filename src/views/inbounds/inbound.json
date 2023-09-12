@@ -1,0 +1,139 @@
+{
+     "advanced_search": [
+          {
+               "prop": "sysOrderNo",
+               "label": "入庫單號碼",
+               "type": "text",
+               "value": ""
+          },
+          {
+               "prop": "subCarrierId",
+               "label": "子棧板編號",
+               "type": "text",
+               "value": ""
+          },
+          {
+               "prop": "carrierId",
+               "label": "母棧板編號",
+               "type": "text",
+               "value": ""
+          }
+     ],
+     "master_columns": [
+          {
+               "prop": "seq",
+               "label": "seq",
+               "sortable": false,
+               "fixed": true,
+               "minWidth": 80,
+               "align": "left",
+               "queryable": false,
+               "value": ""
+          },
+          {
+               "prop": "projectName",
+               "label": "Project Name",
+               "sortable": true,
+               "fixed": true,
+               "minWidth": 200,
+               "align": "left",
+               "queryable": true,
+               "value": ""
+          },
+          {
+               "prop": "boardName",
+               "label": "Board Name",
+               "sortable": true,
+               "fixed": false,
+               "minWidth": 180,
+               "align": "left",
+               "queryable": false,
+               "value": ""
+          },
+          {
+               "prop": "stage",
+               "label": "Stage",
+               "sortable": true,
+               "fixed": false,
+               "minWidth": 160,
+               "align": "left",
+               "queryable": true,
+               "value": ""
+          },
+          {
+               "prop": "startDate",
+               "label": "Start Date",
+               "sortable": true,
+               "fixed": false,
+               "minWidth": 160,
+               "align": "left",
+               "queryable": true,
+               "value": ""
+          },
+          {
+               "prop": "gerberOutDate",
+               "label": "Gerber Out Date",
+               "sortable": true,
+               "fixed": false,
+               "minWidth": 180,
+               "align": "left",
+               "queryable": false,
+               "value": ""
+          },
+          {
+               "prop": "ECADOwner",
+               "label": "ECAD Owner",
+               "sortable": false,
+               "fixed": false,
+               "minWidth": 160,
+               "align": "left",
+               "queryable": false,
+               "value": ""
+          }
+     ],
+     "master_custom": {
+          "prop": "action",
+          "label": "動作",
+          "minWidth": 180,
+          "align": "center",
+          "fixed": "right",
+          "actions": [
+               {
+                    "name": "Detail",
+                    "type": "success",
+                    "event": "onView",
+                    "icon": "Document",
+                    "isShow": true
+               }
+          ]
+     },
+     "master_records": [
+          {
+               "seq": 1,
+               "projectName": "AAA",
+               "boardName": "MB",
+               "stage": "Design Entry",
+               "startDate": "2032-01-01",
+               "gerberOutDate": "2023-02-05",
+               "ECADOwner": ""
+          },
+          {
+               "seq": 2,
+               "projectName": "BBB",
+               "boardName": "MB",
+               "stage": "EVT",
+               "startDate": "2032-10-30",
+               "gerberOutDate": "2023-12-5",
+               "ECADOwner": ""
+          },
+          {
+               "seq": 3,
+               "projectName": "AAA",
+               "boardName": "Riser",
+               "stage": "PVT",
+               "startDate": "2032-09-30",
+               "gerberOutDate": "2023-09-10",
+               "ECADOwner": ""
+          }
+     ]
+}

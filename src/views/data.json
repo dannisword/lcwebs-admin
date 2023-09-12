@@ -1,0 +1,153 @@
+{
+     "status": [
+          {
+               "label": "Enable",
+               "value": 1
+          },
+          {
+               "label": "Disable",
+               "value": 0
+          }
+     ],
+     "auth": [
+          {
+               "label": "Read",
+               "value": "read"
+          },
+          {
+               "label": "Write",
+               "value": "write"
+          }
+     ],
+     "menus": [
+          {
+               "index": 10,
+               "funcName": "Admin",
+               "path": "",
+               "authjson": "read",
+               "subFuncs": [
+                    {
+                         "index": 11,
+                         "funcName": "Dashboard",
+                         "path": "",
+                         "authjson": "read"
+                    },
+                    {
+                         "index": 12,
+                         "funcName": "User Settings",
+                         "path": "/sysUserSetting",
+                         "authjson": "read"
+                    },
+                    {
+                         "index": 13,
+                         "funcName": "Role Settings",
+                         "path": "/sysRoleSetting",
+                         "authjson": "read"
+                    }
+               ]
+          },
+          {
+               "index": 20,
+               "funcName": "PCB Design",
+               "path": "",
+               "authjson": "read",
+               "subFuncs": [
+                    {
+                         "index": 21,
+                         "funcName": "ECAD Resource Request",
+                         "path": "",
+                         "authjson": "read"
+                    },
+                    {
+                         "index": 22,
+                         "funcName": "In Process",
+                         "path": "",
+                         "authjson": "read"
+                    },
+                    {
+                         "index": 23,
+                         "funcName": "History",
+                         "path": "",
+                         "authjson": "read"
+                    }
+               ]
+          },
+          {
+               "index": 30,
+               "funcName": "PCB Design Checklist",
+               "path": "",
+               "authjson": "read",
+               "subFuncs": [
+                    {
+                         "index": 31,
+                         "funcName": "Checklist From",
+                         "path": "",
+                         "authjson": "read"
+                    },
+                    {
+                         "index": 32,
+                         "funcName": "In Process",
+                         "path": "",
+                         "authjson": "read"
+                    },
+                    {
+                         "index": 33,
+                         "funcName": "History",
+                         "path": "",
+                         "authjson": "read"
+                    }
+               ]
+          },
+          {
+               "index": 40,
+               "funcName": "Gerber Out Approve",
+               "path": "",
+               "subFuncs": [
+                    {
+                         "index": 41,
+                         "funcName": "Create Approve From",
+                         "path": "",
+                         "authjson": "read"
+                    },
+                    {
+                         "index": 42,
+                         "funcName": "In Process",
+                         "path": "",
+                         "authjson": "read"
+                    },
+                    {
+                         "index": 43,
+                         "funcName": "History",
+                         "path": "",
+                         "authjson": "read"
+                    }
+               ]
+          },
+          {
+               "index": 50,
+               "funcName": "System Management",
+               "path": "",
+               "authjson": "read",
+               "subFuncs": [
+                    {
+                         "index": 51,
+                         "funcName": "Projct Team Roster",
+                         "path": "",
+                         "authjson": "read"
+                    },
+                    {
+                         "index": 52,
+                         "funcName": "Function Team Roster",
+                         "path": "",
+                         "authjson": "read"
+                    },
+                    {
+                         "index": 53,
+                         "funcName": "PCB Design Checklist",
+                         "path": "",
+                         "authjson": "read"
+                    }
+               ]
+          }
+     ]
+}

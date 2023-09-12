@@ -1,0 +1,8 @@
+/* sidebar-logo-fade */
+.sidebar-logo-fade-enter-active {
+     transition: opacity var(--logo-switch-duration);
+   }
+   .sidebar-logo-fade-enter-from,
+   .sidebar-logo-fade-leave-to {
+     opacity: 0;
+   }
