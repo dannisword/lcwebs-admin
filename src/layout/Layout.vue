@@ -83,6 +83,7 @@ const classObj = computed(() => {
   flex: 0 0 auto;
   width: --sideBar-width;
   border-right: 1px solid #efefef;
+  background-color: #545c64;
 }
 
 .main {

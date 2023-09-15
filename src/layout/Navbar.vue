@@ -32,6 +32,7 @@ const selectChange = (e: any) => {
   <div class="navbar">
     <!-- logo -->
     <div @click="toggleClick()">
+        
       <el-icon class="logo-style">
         <Fold />
       </el-icon>
@@ -62,7 +63,7 @@ const selectChange = (e: any) => {
   height: var(--nav-bar-height);
   overflow: hidden;
   position: relative;
-  background: var(--nav-bar-background);
+  background: var(--el-color-primary-dark-2);
   box-shadow: var(--nav-bar-box-shadow);
   z-index: 1;
   display: flex;
@@ -75,7 +76,7 @@ const selectChange = (e: any) => {
 .right-menu {
   cursor: pointer;
   //   margin-right: 40px ;
-  background-color: var(--nav-bar-background);
+  background-color: transparent;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -83,6 +84,7 @@ const selectChange = (e: any) => {
 }
 .user-icon {
   font-size: 16px;
+  color:  var(--nav-bar-background);
 }
 //logo
 .avatar-wrapper {
@@ -107,6 +109,6 @@ const selectChange = (e: any) => {
 }
 .logo-style {
   font-size: x-large;
-  color: #757575;
+  color: #ffffff;
 }
 </style>
