@@ -54,9 +54,8 @@ const showPwd = () => {
     <div class="login-form-wrap">
       <div class="left-wrap">
         <div class="logo">
-          <img src="../assets/Jabil-logo-blue.svg" alt="" />
+          <img src="../assets/logo1.png" alt="" />
         </div>
-        <img src="../assets/login.png" alt="bg" />
       </div>
 
       <div class="right-wrap">
@@ -68,7 +67,7 @@ const showPwd = () => {
           :rules="state.loginRules"
         >
           <div class="logo logo-mobile">
-            <img src="../assets/Jabil-logo-blue.svg" alt="" />
+            <img src="../assets/logo1.png" alt="" />
           </div>
           <div id="register_header">
             <h3>Welcome</h3>
@@ -207,7 +206,17 @@ $cursor: #fff;
   justify-content: center;
   height: 100%;
   align-items: center;
-
+  background: url('../assets/bg.jpg') no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+  position: relative;
+  &::before {
+    content: '';
+    background-color:rgb(16 19 36 / 36%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
   img {
     max-width: 100%;
     height: auto;
