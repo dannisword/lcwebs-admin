@@ -10,6 +10,9 @@ import {
 } from "../../utils";
 import jsonData from "./user-record.json";
 import data from "../data.json";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-alpine.css";
+import { AgGridVue } from "ag-grid-vue3";
 
 const page = pageHandle();
 
@@ -73,6 +76,8 @@ const multipleTableRef = ref<InstanceType<typeof ElTable>>();
 let user = {} as any;
 let selectedRoles = [] as any;
 let isUpdate = ref(false);
+let columnDefs = [] as any;
+let rowData = [] as any;
 
 onBeforeMount(() => {
   _current.params = clone(params);
@@ -85,7 +90,23 @@ onBeforeMount(() => {
 
   roles.columns = jsonData.roles_columns;
   roles.custom = jsonData.roles_custom;
-  roles.records = jsonData.roles_records;
+    roles.records = jsonData.roles_records;
+
+    columnDefs = [
+        { headerName: "是否廢四樓", field: "make" },
+        { headerName: "會計回單時間", field: "model" },
+        { headerName: "預計送達時間", field: "price" },
+        { headerName: "會計回單人", field: "price" },
+        { headerName: "運輸類型", field: "price" },
+        { headerName: "運輸類型描述", field: "price" },
+        { headerName: "溫層", field: "price" },
+        { headerName: "溫層描述", field: "price" },
+    ];
+    rowData = [
+        { make: "Toyota", model: "Celica", price: 35000 },
+        { make: "Ford", model: "Mondeo", price: 32000 },
+        { make: "Porsche", model: "Boxster", price: 72000 },
+    ];
 
 
   load();
@@ -187,12 +208,12 @@ const handleValid = (pass: any = undefined) => {
         </el-row>
       </el-form>
       <!-- 功能按鈕-->
-      <div class="form-container">
+      <div class="form-container" >
         <div class="form-end">
           <el-button type="primary" @click="add()"> New User </el-button>
         </div>
       </div>
-      <DataTable
+      <!-- <DataTable
         :records="master.records"
         :columns="master.columns"
         :custom="master.custom"
@@ -200,9 +221,18 @@ const handleValid = (pass: any = undefined) => {
         :pageable="pageable"
         @on-action="tableAction"
       >
-      </DataTable>
-    </el-main>
+      </DataTable> -->
+      <ag-grid-vue
+                style="width: 100%; height: 300px"
+                class="ag-theme-alpine"
+                :columnDefs="columnDefs"
+                :rowData="rowData"
+                :paginationAutoPageSize="true"
+                :pagination="true"
+              >
+              </ag-grid-vue>
 
+    </el-main>
     <Dialog
       :title="userModal.title"
       :visible="userModal.visible"
@@ -303,5 +333,9 @@ const handleValid = (pass: any = undefined) => {
 <style scoped>
 .el-select {
   width: 100%;
+}
+
+.form-container {
+    margin-bottom: 10px;
 }
 </style>

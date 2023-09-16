@@ -206,7 +206,7 @@ $cursor: #fff;
   justify-content: center;
   height: 100%;
   align-items: center;
-  background: url('../assets/bg.jpg') no-repeat center left;
+  background: url('../assets/bg.jpg') no-repeat center center;
   background-size: cover;
   overflow: hidden;
   position: relative;
