@@ -150,7 +150,13 @@ const load = () => {
 
 };
 
-
+const onCellClicked = () => {
+    userModal.title = "訂單資訊";
+    isUpdate.value = false;
+    userModal.visible = true;
+    resetForm();
+    Object.assign(entity, _current.entity);
+}
 
 const add = () => {
     userModal.title = "訂單資訊";
@@ -378,12 +384,12 @@ const handleValid = (pass: any = undefined) => {
 
 
             <ag-grid-vue style="width: 100%; height: 300px" :gridOptions="gridOptions" class="ag-theme-alpine"
-                :paginationAutoPageSize="true" :pagination="true">
+                :paginationAutoPageSize="true" :pagination="true" :onCellClicked="onCellClicked">
             </ag-grid-vue>
 
 
         </el-main>
-        <Dialog :title="userModal.title" :visible="userModal.visible" :width="'100%'" @on-before-close="userModalClose">
+        <Dialog :title="userModal.title" :visible="userModal.visible" :width="'90%'" @on-before-close="userModalClose">
             <div class="status-btn-wrap">
                 <el-button class="status-btn">
                             <el-icon class="el-icon--bottom">
