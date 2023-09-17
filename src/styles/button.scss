@@ -4,8 +4,11 @@
     span {
         flex-flow: column;
     }
+    &-font {
+        font-size: 12px;
+    }
 }
 
 .el-icon--bottom {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }

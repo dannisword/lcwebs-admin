@@ -207,18 +207,133 @@ const handleValid = (pass: any = undefined) => {
 <template>
     <el-container v-loading="page.container.isLoading" :element-loading-text="page.container.message">
         <el-main>
-            <div class="flex">
+            <el-text size="small">勾選筆數：Status</el-text>
+            <div class="status-btn-wrap">
                 <el-badge :value="1" class="item" type="primary">
                     <el-button class="status-btn">
                         <el-icon class="el-icon--bottom">
-                            <Upload />
+                            <Calendar />
                         </el-icon>
-                        尚未安排
+                        <span class="status-btn-font">尚未安排</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <Box />
+                        </el-icon>
+                        <span class="status-btn-font">貨物裝載中</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <Sell />
+                        </el-icon>
+                        <span class="status-btn-font">已提貨</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <ChatLineRound />
+                        </el-icon>
+                        <span class="status-btn-font">配送發生問題</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <Van />
+                        </el-icon>
+                        <span class="status-btn-font">配送完成</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <Remove />
+                        </el-icon>
+                        <span class="status-btn-font">作廢</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <CircleClose />
+                        </el-icon>
+                        <span class="status-btn-font">拒收</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <Edit />
+                        </el-icon>
+                        <span class="status-btn-font">ALL</span>
+                    </el-button>
+                </el-badge>
+            </div>
+            <div class="status-btn-wrap">
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <Search />
+                        </el-icon>
+                        <span class="status-btn-font">搜尋</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <Download />
+                        </el-icon>
+                        <span class="status-btn-font">匯出 Excel</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <Plus />
+                        </el-icon>
+                        <span class="status-btn-font">新增</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <Delete />
+                        </el-icon>
+                        <span class="status-btn-font">刪除</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <Van />
+                        </el-icon>
+                        <span class="status-btn-font">發送狀況</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <Remove />
+                        </el-icon>
+                        <span class="status-btn-font">作廢</span>
+                    </el-button>
+                </el-badge>
+                <el-badge :value="1" class="item" type="primary">
+                    <el-button class="status-btn">
+                        <el-icon class="el-icon--bottom">
+                            <Document />
+                        </el-icon>
+                        <span class="status-btn-font">面單</span>
                     </el-button>
                 </el-badge>
             </div>
             <!-- 搜尋條件-->
-            <el-form label-width="auto" :model="params" :inline="false">
+            <!-- <el-form label-width="auto" :model="params" :inline="false">
                 <el-row>
                     <el-col :xs="24" :sm="8" :md="8" :lg="6" :xl="6">
                         <el-form-item label="Name">
@@ -239,7 +354,7 @@ const handleValid = (pass: any = undefined) => {
                         <el-button @click="clear()"> Clear </el-button>
                     </el-col>
                 </el-row>
-            </el-form>
+            </el-form> -->
             <!-- 功能按鈕-->
             <div class="form-container">
                 <div class="form-end">
@@ -329,11 +444,21 @@ const handleValid = (pass: any = undefined) => {
     </el-container>
 </template>
 <style lang="scss" scoped>
+.el-main {
+    --el-main-padding: 10px;
+}
 .el-select {
     width: 100%;
 }
 
 .form-container {
     margin-bottom: 10px;
+}
+.status-btn-wrap {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    column-gap: 5px;
+    padding: 10px 0;
 }
 </style>
