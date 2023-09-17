@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     ConfigGlobal: typeof import('./components/ConfigGlobal.vue')['default']
     DataTable: typeof import('./components/DataTable.vue')['default']
     Dialog: typeof import('./components/Dialog.vue')['default']
+    ElBadge: typeof import('element-plus/es')['ElBadge']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCheckbox: typeof import('element-plus/es')['ElCheckbox']
     ElCol: typeof import('element-plus/es')['ElCol']
