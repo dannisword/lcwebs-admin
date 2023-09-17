@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ElTable } from "element-plus";
+import { ElTable, TabsPaneContext } from "element-plus";
 import { pageHandle } from "../../hooks/page-handle";
 import {
     clone,
@@ -45,7 +45,7 @@ let formError = reactive({
 });
 
 const userModal = reactive({
-    title: "New User",
+    title: "訂單資訊",
     visible: false,
 });
 
@@ -73,6 +73,12 @@ const roles = reactive({
     records: [] as any,
     selection: true,
 });
+
+const activeName = ref('first')
+
+const handleClick = (tab: TabsPaneContext, event: Event) => {
+    console.log(tab, event)
+}
 const multipleTableRef = ref<InstanceType<typeof ElTable>>();
 let user = {} as any;
 let selectedRoles = [] as any;
@@ -100,11 +106,11 @@ const gridOptions: GridOptions = {
     // EVENTS
     // Add event handlers
     onRowClicked: (event: any) => console.log('A row was clicked'),
-     onColumnResized: (event: any) => console.log('A column was resized'),
-     onGridReady: (event: any) => console.log('The grid is now ready'),
+    onColumnResized: (event: any) => console.log('A column was resized'),
+    onGridReady: (event: any) => console.log('The grid is now ready'),
 
-     // CALLBACKS
-     getRowHeight: (params: any) => 25
+    // CALLBACKS
+    getRowHeight: (params: any) => 25
 }
 
 onBeforeMount(() => {
@@ -147,7 +153,7 @@ const load = () => {
 
 
 const add = () => {
-    userModal.title = "New User";
+    userModal.title = "訂單資訊";
     isUpdate.value = false;
     userModal.visible = true;
     resetForm();
@@ -169,8 +175,7 @@ const selectionRoles = (val: any) => {
 };
 
 const userModalClose = (val: any) => {
-
-
+    userModal.visible = false;
 };
 
 const roleModalClose = (val: any) => {
@@ -372,65 +377,188 @@ const handleValid = (pass: any = undefined) => {
       </DataTable> -->
 
 
-                  <ag-grid-vue
-                    style="width: 100%; height: 300px"
-                    :gridOptions="gridOptions"
-                    class="ag-theme-alpine"
-                    :paginationAutoPageSize="true"
-                    :pagination="true"
-                  >
-                  </ag-grid-vue>
+            <ag-grid-vue style="width: 100%; height: 300px" :gridOptions="gridOptions" class="ag-theme-alpine"
+                :paginationAutoPageSize="true" :pagination="true">
+            </ag-grid-vue>
 
 
         </el-main>
-        <Dialog :title="userModal.title" :visible="userModal.visible" :width="'50%'" @on-before-close="userModalClose">
-            <el-form label-width="auto" auto-complete="on" :inline="false">
-                <el-row>
-                    <el-col :span="24">
-                        <el-form-item label="Account" :rules="[{ required: true }]" :error="formError.sysUserId">
+        <Dialog :title="userModal.title" :visible="userModal.visible" :width="'100%'" @on-before-close="userModalClose">
+            <div class="status-btn-wrap">
+                <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <Search />
+                            </el-icon>
+                            <span class="status-btn-font">搜尋</span>
+                        </el-button>
+                 <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <Download />
+                            </el-icon>
+                            <span class="status-btn-font">匯出 Excel</span>
+                        </el-button>
+                 <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <Plus />
+                            </el-icon>
+                            <span class="status-btn-font">新增</span>
+                        </el-button>
+                 <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <Delete />
+                            </el-icon>
+                            <span class="status-btn-font">刪除</span>
+                        </el-button>
+                 <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <Van />
+                            </el-icon>
+                            <span class="status-btn-font">發送狀況</span>
+                        </el-button>
+                
+            </div>
+            <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+                <el-tab-pane label="訂單資訊" name="first">
+                    <el-form label-width="auto" auto-complete="on" :inline="true">
+                        <el-form-item label="系統訂單號" :rules="[{ required: true }]" :error="formError.sysUserId">
                             <el-input v-model="entity.sysUserId"></el-input>
                         </el-form-item>
-                    </el-col>
-
-                    <el-col :span="24">
-                        <el-form-item label="Display Name" :rules="[{ required: true, trigger: 'blur' }]"
+                        <el-form-item label="訂單號" :rules="[{ required: true, trigger: 'blur' }]"
                             :error="formError.disName">
                             <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
                         </el-form-item>
-                    </el-col>
-
-                    <el-col :span="24">
-                        <el-form-item v-if="isUpdate == false" label="Password"
+                        <el-form-item v-if="isUpdate == false" label="運輸公司名稱"
                             :rules="[{ required: true, trigger: 'blur' }]" :error="formError.password">
                             <el-input v-model="entity.password" @blur="handleValid()"></el-input>
                         </el-form-item>
-                    </el-col>
-
-                    <!-- 
-          <el-col :span="24">
-            <el-form-item
-              label="Confirm Password"
-              :rules="[{ required: true, trigger: 'blur' }]"
-              :error="formError.confirmPassword"
-            >
-              <el-input
-                v-model="entity.confirmPassword"
-                @blur="handleValid()"
-              ></el-input>
-            </el-form-item>
-          </el-col>
-        -->
-                    <el-col :span="24">
-                        <el-form-item label="Status">
+                        <el-form-item label="客戶訂單號" :rules="[{ required: true, trigger: 'blur' }]"
+                                :error="formError.disName">
+                                <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                            </el-form-item>
+                        <el-form-item label="倉庫訂單號碼" :rules="[{ required: true, trigger: 'blur' }]"
+                                :error="formError.disName">
+                                <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                            </el-form-item>
+                            <el-form-item label="訂單狀態">
+                                <el-select v-model="entity.enabled" placeholder="Please Select">
+                                    <el-option v-for="item in data.status" :key="item.value" :label="item.label"
+                                        :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </el-form-item>
+                        <el-form-item label="訂單狀態" :rules="[{ required: true, trigger: 'blur' }]"
+                                :error="formError.disName">
+                                <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                            </el-form-item>
+                        <el-form-item label="預計送達時間" :rules="[{ required: true, trigger: 'blur' }]"
+                                :error="formError.disName">
+                                <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                            </el-form-item>
+                        <el-form-item label="運輸類型" :rules="[{ required: true, trigger: 'blur' }]"
+                                :error="formError.disName">
+                                <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                            </el-form-item>
+                        <el-form-item label="溫層">
                             <el-select v-model="entity.enabled" placeholder="Please Select">
                                 <el-option v-for="item in data.status" :key="item.value" :label="item.label"
                                     :value="item.value">
                                 </el-option>
                             </el-select>
                         </el-form-item>
-                    </el-col>
-                </el-row>
-            </el-form>
+                        <el-form-item label="運輸公司" :rules="[{ required: true, trigger: 'blur' }]"
+                                    :error="formError.disName">
+                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                </el-form-item>
+                        <el-form-item label="倉庫地址" :rules="[{ required: true, trigger: 'blur' }]"
+                                    :error="formError.disName">
+                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                </el-form-item>
+                        <el-form-item label="出貨類別" :rules="[{ required: true, trigger: 'blur' }]"
+                                    :error="formError.disName">
+                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                </el-form-item>
+                        <el-form-item label="貨主名稱" :rules="[{ required: true, trigger: 'blur' }]"
+                                    :error="formError.disName">
+                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                </el-form-item>
+                        <el-form-item label="貨主發送 mail" :rules="[{ required: true, trigger: 'blur' }]"
+                                    :error="formError.disName">
+                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                </el-form-item>
+                        <el-form-item label="急單" :rules="[{ required: true, trigger: 'blur' }]"
+                                    :error="formError.disName">
+                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                </el-form-item>
+                        <el-form-item label="站別" :rules="[{ required: true, trigger: 'blur' }]"
+                                    :error="formError.disName">
+                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                </el-form-item>
+                        <el-form-item label="是否廢四機" :rules="[{ required: true, trigger: 'blur' }]"
+                                    :error="formError.disName">
+                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                </el-form-item>
+                    </el-form>
+                </el-tab-pane>
+                <el-tab-pane label="提貨配送資料" name="second">
+                    <el-form label-width="auto" auto-complete="on" :inline="true">
+                            <el-form-item label="運輸公司" :rules="[{ required: true, trigger: 'blur' }]"
+                                        :error="formError.disName">
+                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                    </el-form-item>
+                            <el-form-item label="倉庫地址" :rules="[{ required: true, trigger: 'blur' }]"
+                                        :error="formError.disName">
+                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                    </el-form-item>
+                            <el-form-item label="出貨類別" :rules="[{ required: true, trigger: 'blur' }]"
+                                        :error="formError.disName">
+                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                    </el-form-item>
+                            <el-form-item label="貨主名稱" :rules="[{ required: true, trigger: 'blur' }]"
+                                        :error="formError.disName">
+                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                    </el-form-item>
+                            <el-form-item label="貨主發送 mail" :rules="[{ required: true, trigger: 'blur' }]"
+                                        :error="formError.disName">
+                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                    </el-form-item>
+                            <el-form-item label="急單" :rules="[{ required: true, trigger: 'blur' }]"
+                                        :error="formError.disName">
+                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                    </el-form-item>
+                            <el-form-item label="站別" :rules="[{ required: true, trigger: 'blur' }]"
+                                        :error="formError.disName">
+                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                    </el-form-item>
+                            <el-form-item label="是否廢四機" :rules="[{ required: true, trigger: 'blur' }]"
+                                        :error="formError.disName">
+                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                                    </el-form-item>
+                        </el-form>
+                </el-tab-pane>
+            </el-tabs>
+            <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
+                    <el-tab-pane label="訂單明細" name="first">
+                        <DataTable
+            :records="master.records"
+            :columns="master.columns"
+            :custom="master.custom"
+            :selection="master.selection"
+            :pageable="pageable"
+            @on-action="tableAction"
+          >
+          </DataTable>
+                            
+                    </el-tab-pane>
+                    <el-tab-pane label="圖片資訊" name="second">
+                        圖片資訊
+                    </el-tab-pane>
+                    <el-tab-pane label="點貨資訊" name="third">
+                        點貨資訊
+                    </el-tab-pane>
+                    <el-tab-pane label="廢四機資訊" name="fourth">
+                        廢四機資訊
+                    </el-tab-pane>
+                </el-tabs>
         </Dialog>
         <!-- role -->
         <Dialog :title="roleModal.title" :visible="roleModal.visible" :width="'50%'" @on-before-close="roleModalClose">
@@ -447,6 +575,7 @@ const handleValid = (pass: any = undefined) => {
 .el-main {
     --el-main-padding: 10px;
 }
+
 .el-select {
     width: 100%;
 }
@@ -454,6 +583,7 @@ const handleValid = (pass: any = undefined) => {
 .form-container {
     margin-bottom: 10px;
 }
+
 .status-btn-wrap {
     display: flex;
     justify-content: start;

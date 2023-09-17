@@ -26,7 +26,9 @@ const handleClose = (event: any) => {
 };
 
 const afterClosed = (val: boolean) => {
-  dialogRef.success = val;
+    dialogRef.success = val;
+  console.log('val', val, dialogRef);
+  
   emit("on-before-close", dialogRef);
 };
 const open = () => {
