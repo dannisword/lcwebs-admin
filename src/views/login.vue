@@ -53,9 +53,9 @@ const showPwd = () => {
   <el-container class="mainWrap" v-loading="page.container.isLoading">
     <div class="login-form-wrap">
       <div class="left-wrap">
-        <div class="logo">
+        <!-- <div class="logo">
           <img src="../assets/logo1.png" alt="" />
-        </div>
+        </div> -->
       </div>
 
       <div class="right-wrap">
@@ -66,11 +66,11 @@ const showPwd = () => {
           :model="state.user"
           :rules="state.loginRules"
         >
-          <div class="logo logo-mobile">
+          <div class="logo">
             <img src="../assets/logo1.png" alt="" />
           </div>
           <div id="register_header">
-            <h3>Welcome</h3>
+            <h3>Welcome 聯倉車隊管理平台</h3>
           </div>
 
           <el-form-item prop="account">
@@ -110,20 +110,26 @@ const showPwd = () => {
           <el-button
             :loading="state.loading"
             type="primary"
-            style="width: 100%; margin-bottom: 30px"
+            style="width: 100%; margin-bottom: 30px ;min-width:260px"
             @click.native.prevent="onLogin()"
           >
             登入
           </el-button>
-          <!-- 
+          
         <div class="tips">
-          <span class="version-span">前端版本 {{ $version }} - {{ 1 }}</span
+          <span class="version-span">前端版本 1</span
+          >
+          <!-- <br /> -->
+          <!-- <span class="version-span">後端版本 {{ 1 }}</span>
+          <span>工作站點 {{ 1 }}</span> -->
+          <!-- <span class="version-span">前端版本 {{ $version }} - {{ 1 }}</span
           ><br />
           <span class="version-span">後端版本 {{ 1 }}</span>
-          <span>工作站點 {{ 1 }}</span>
+          <span>工作站點 {{ 1 }}</span> -->
         </div>
-      -->
+
         </el-form>
+        
       </div>
 
       <!-- <div id="logo">
@@ -175,16 +181,14 @@ $cursor: #fff;
 }
 
 .logo {
-  width: 130px;
+  width: 100%;
   margin-bottom: 0 auto 20px;
   display: flex;
-  position: absolute;
-  left: 20px;
-  top: 20px;
+  justify-content: center;
 
   img {
     max-width: 100%;
-    width: 110px;
+    width: 100px;
   }
 }
 
@@ -195,7 +199,11 @@ $cursor: #fff;
 .right-wrap {
   max-width: 33.3%;
   flex: 33.3%;
-  padding: 5rem;
+  padding: 3rem;
+  justify-content: center;
+  h3 {
+    text-align: center;
+  }
 }
 
 .left-wrap {
@@ -244,4 +252,10 @@ $cursor: #fff;
     padding: 0 !important;
   }
 }
+
+.tips {
+    font-size: 10px;
+    text-align: center;
+}
+
 </style>

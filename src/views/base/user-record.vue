@@ -213,135 +213,132 @@ const handleValid = (pass: any = undefined) => {
     }
     return isValid;
 };
+
+const activeNames = ref(['1'])
+const handleChange = (val: any) => {
+    console.log(val);
+}
 </script>
 
 <template>
     <el-container v-loading="page.container.isLoading" :element-loading-text="page.container.message">
         <el-main>
-            <el-text size="small">勾選筆數：Status</el-text>
+            <!-- <el-text size="small">勾選筆數：Status</el-text> -->
+             <el-collapse v-model="activeNames" @change="handleChange">
+          <el-collapse-item title="勾選筆數：Status" name="1">
+             <div class="status-btn-wrap">
+                    <el-badge :value="1" class="item" type="primary">
+                        <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <Calendar />
+                            </el-icon>
+                            <span class="status-btn-font">尚未安排</span>
+                        </el-button>
+                    </el-badge>
+                    <el-badge :value="1" class="item" type="primary">
+                        <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <Box />
+                            </el-icon>
+                            <span class="status-btn-font">貨物裝載中</span>
+                        </el-button>
+                    </el-badge>
+                    <el-badge :value="1" class="item" type="primary">
+                        <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <Sell />
+                            </el-icon>
+                            <span class="status-btn-font">已提貨</span>
+                        </el-button>
+                    </el-badge>
+                    <el-badge :value="1" class="item" type="primary">
+                        <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <ChatLineRound />
+                            </el-icon>
+                            <span class="status-btn-font">配送發生問題</span>
+                        </el-button>
+                    </el-badge>
+                    <el-badge :value="1" class="item" type="primary">
+                        <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <Van />
+                            </el-icon>
+                            <span class="status-btn-font">配送完成</span>
+                        </el-button>
+                    </el-badge>
+                    <el-badge :value="1" class="item" type="primary">
+                        <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <Remove />
+                            </el-icon>
+                            <span class="status-btn-font">作廢</span>
+                        </el-button>
+                    </el-badge>
+                    <el-badge :value="1" class="item" type="primary">
+                        <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <CircleClose />
+                            </el-icon>
+                            <span class="status-btn-font">拒收</span>
+                        </el-button>
+                    </el-badge>
+                    <el-badge :value="1" class="item" type="primary">
+                        <el-button class="status-btn">
+                            <el-icon class="el-icon--bottom">
+                                <Edit />
+                            </el-icon>
+                            <span class="status-btn-font">ALL</span>
+                        </el-button>
+                    </el-badge>
+                </div>
+          </el-collapse-item>
+          </el-collapse>
+          
             <div class="status-btn-wrap">
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Calendar />
-                        </el-icon>
-                        <span class="status-btn-font">尚未安排</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Box />
-                        </el-icon>
-                        <span class="status-btn-font">貨物裝載中</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Sell />
-                        </el-icon>
-                        <span class="status-btn-font">已提貨</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <ChatLineRound />
-                        </el-icon>
-                        <span class="status-btn-font">配送發生問題</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Van />
-                        </el-icon>
-                        <span class="status-btn-font">配送完成</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Remove />
-                        </el-icon>
-                        <span class="status-btn-font">作廢</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <CircleClose />
-                        </el-icon>
-                        <span class="status-btn-font">拒收</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Edit />
-                        </el-icon>
-                        <span class="status-btn-font">ALL</span>
-                    </el-button>
-                </el-badge>
-            </div>
-            <div class="status-btn-wrap">
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Search />
-                        </el-icon>
-                        <span class="status-btn-font">搜尋</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Download />
-                        </el-icon>
-                        <span class="status-btn-font">匯出 Excel</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Plus />
-                        </el-icon>
-                        <span class="status-btn-font">新增</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Delete />
-                        </el-icon>
-                        <span class="status-btn-font">刪除</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Van />
-                        </el-icon>
-                        <span class="status-btn-font">發送狀況</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Remove />
-                        </el-icon>
-                        <span class="status-btn-font">作廢</span>
-                    </el-button>
-                </el-badge>
-                <el-badge :value="1" class="item" type="primary">
-                    <el-button class="status-btn">
-                        <el-icon class="el-icon--bottom">
-                            <Document />
-                        </el-icon>
-                        <span class="status-btn-font">面單</span>
-                    </el-button>
-                </el-badge>
+                <el-button class="status-btn">
+                    <el-icon class="el-icon--bottom">
+                        <Search />
+                    </el-icon>
+                    <span class="status-btn-font">搜尋</span>
+                </el-button>
+                <el-button class="status-btn">
+                    <el-icon class="el-icon--bottom">
+                        <Download />
+                    </el-icon>
+                    <span class="status-btn-font">匯出 Excel</span>
+                </el-button>
+                <el-button class="status-btn">
+                    <el-icon class="el-icon--bottom">
+                        <Plus />
+                    </el-icon>
+                    <span class="status-btn-font">新增</span>
+                </el-button>
+                <el-button class="status-btn">
+                    <el-icon class="el-icon--bottom">
+                        <Delete />
+                    </el-icon>
+                    <span class="status-btn-font">刪除</span>
+                </el-button>
+                <el-button class="status-btn">
+                    <el-icon class="el-icon--bottom">
+                        <Van />
+                    </el-icon>
+                    <span class="status-btn-font">發送狀況</span>
+                </el-button>
+                <el-button class="status-btn">
+                    <el-icon class="el-icon--bottom">
+                        <Remove />
+                    </el-icon>
+                    <span class="status-btn-font">作廢</span>
+                </el-button>
+
+                <el-button class="status-btn">
+                    <el-icon class="el-icon--bottom">
+                        <Document />
+                    </el-icon>
+                    <span class="status-btn-font">面單</span>
+                </el-button>
             </div>
             <!-- 搜尋條件-->
             <!-- <el-form label-width="auto" :model="params" :inline="false">
@@ -392,36 +389,36 @@ const handleValid = (pass: any = undefined) => {
         <Dialog :title="userModal.title" :visible="userModal.visible" :width="'90%'" @on-before-close="userModalClose">
             <div class="status-btn-wrap">
                 <el-button class="status-btn">
-                            <el-icon class="el-icon--bottom">
-                                <Search />
-                            </el-icon>
-                            <span class="status-btn-font">搜尋</span>
-                        </el-button>
-                 <el-button class="status-btn">
-                            <el-icon class="el-icon--bottom">
-                                <Download />
-                            </el-icon>
-                            <span class="status-btn-font">匯出 Excel</span>
-                        </el-button>
-                 <el-button class="status-btn">
-                            <el-icon class="el-icon--bottom">
-                                <Plus />
-                            </el-icon>
-                            <span class="status-btn-font">新增</span>
-                        </el-button>
-                 <el-button class="status-btn">
-                            <el-icon class="el-icon--bottom">
-                                <Delete />
-                            </el-icon>
-                            <span class="status-btn-font">刪除</span>
-                        </el-button>
-                 <el-button class="status-btn">
-                            <el-icon class="el-icon--bottom">
-                                <Van />
-                            </el-icon>
-                            <span class="status-btn-font">發送狀況</span>
-                        </el-button>
-                
+                    <el-icon class="el-icon--bottom">
+                        <Search />
+                    </el-icon>
+                    <span class="status-btn-font">搜尋</span>
+                </el-button>
+                <el-button class="status-btn">
+                    <el-icon class="el-icon--bottom">
+                        <Download />
+                    </el-icon>
+                    <span class="status-btn-font">匯出 Excel</span>
+                </el-button>
+                <el-button class="status-btn">
+                    <el-icon class="el-icon--bottom">
+                        <Plus />
+                    </el-icon>
+                    <span class="status-btn-font">新增</span>
+                </el-button>
+                <el-button class="status-btn">
+                    <el-icon class="el-icon--bottom">
+                        <Delete />
+                    </el-icon>
+                    <span class="status-btn-font">刪除</span>
+                </el-button>
+                <el-button class="status-btn">
+                    <el-icon class="el-icon--bottom">
+                        <Van />
+                    </el-icon>
+                    <span class="status-btn-font">發送狀況</span>
+                </el-button>
+
             </div>
             <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
                 <el-tab-pane label="訂單資訊" name="first">
@@ -429,41 +426,40 @@ const handleValid = (pass: any = undefined) => {
                         <el-form-item label="系統訂單號" :rules="[{ required: true }]" :error="formError.sysUserId">
                             <el-input v-model="entity.sysUserId"></el-input>
                         </el-form-item>
-                        <el-form-item label="訂單號" :rules="[{ required: true, trigger: 'blur' }]"
-                            :error="formError.disName">
+                        <el-form-item label="訂單號" :rules="[{ required: true, trigger: 'blur' }]" :error="formError.disName">
                             <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
                         </el-form-item>
-                        <el-form-item v-if="isUpdate == false" label="運輸公司名稱"
-                            :rules="[{ required: true, trigger: 'blur' }]" :error="formError.password">
+                        <el-form-item v-if="isUpdate == false" label="運輸公司名稱" :rules="[{ required: true, trigger: 'blur' }]"
+                            :error="formError.password">
                             <el-input v-model="entity.password" @blur="handleValid()"></el-input>
                         </el-form-item>
                         <el-form-item label="客戶訂單號" :rules="[{ required: true, trigger: 'blur' }]"
-                                :error="formError.disName">
-                                <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                            </el-form-item>
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
                         <el-form-item label="倉庫訂單號碼" :rules="[{ required: true, trigger: 'blur' }]"
-                                :error="formError.disName">
-                                <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                            </el-form-item>
-                            <el-form-item label="訂單狀態">
-                                <el-select v-model="entity.enabled" placeholder="Please Select">
-                                    <el-option v-for="item in data.status" :key="item.value" :label="item.label"
-                                        :value="item.value">
-                                    </el-option>
-                                </el-select>
-                            </el-form-item>
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
+                        <el-form-item label="訂單狀態">
+                            <el-select v-model="entity.enabled" placeholder="Please Select">
+                                <el-option v-for="item in data.status" :key="item.value" :label="item.label"
+                                    :value="item.value">
+                                </el-option>
+                            </el-select>
+                        </el-form-item>
                         <el-form-item label="訂單狀態" :rules="[{ required: true, trigger: 'blur' }]"
-                                :error="formError.disName">
-                                <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                            </el-form-item>
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
                         <el-form-item label="預計送達時間" :rules="[{ required: true, trigger: 'blur' }]"
-                                :error="formError.disName">
-                                <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                            </el-form-item>
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
                         <el-form-item label="運輸類型" :rules="[{ required: true, trigger: 'blur' }]"
-                                :error="formError.disName">
-                                <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                            </el-form-item>
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
                         <el-form-item label="溫層">
                             <el-select v-model="entity.enabled" placeholder="Please Select">
                                 <el-option v-for="item in data.status" :key="item.value" :label="item.label"
@@ -472,99 +468,89 @@ const handleValid = (pass: any = undefined) => {
                             </el-select>
                         </el-form-item>
                         <el-form-item label="運輸公司" :rules="[{ required: true, trigger: 'blur' }]"
-                                    :error="formError.disName">
-                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                </el-form-item>
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
                         <el-form-item label="倉庫地址" :rules="[{ required: true, trigger: 'blur' }]"
-                                    :error="formError.disName">
-                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                </el-form-item>
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
                         <el-form-item label="出貨類別" :rules="[{ required: true, trigger: 'blur' }]"
-                                    :error="formError.disName">
-                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                </el-form-item>
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
                         <el-form-item label="貨主名稱" :rules="[{ required: true, trigger: 'blur' }]"
-                                    :error="formError.disName">
-                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                </el-form-item>
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
                         <el-form-item label="貨主發送 mail" :rules="[{ required: true, trigger: 'blur' }]"
-                                    :error="formError.disName">
-                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                </el-form-item>
-                        <el-form-item label="急單" :rules="[{ required: true, trigger: 'blur' }]"
-                                    :error="formError.disName">
-                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                </el-form-item>
-                        <el-form-item label="站別" :rules="[{ required: true, trigger: 'blur' }]"
-                                    :error="formError.disName">
-                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                </el-form-item>
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
+                        <el-form-item label="急單" :rules="[{ required: true, trigger: 'blur' }]" :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
+                        <el-form-item label="站別" :rules="[{ required: true, trigger: 'blur' }]" :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
                         <el-form-item label="是否廢四機" :rules="[{ required: true, trigger: 'blur' }]"
-                                    :error="formError.disName">
-                                    <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                </el-form-item>
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
                     </el-form>
                 </el-tab-pane>
                 <el-tab-pane label="提貨配送資料" name="second">
                     <el-form label-width="auto" auto-complete="on" :inline="true">
-                            <el-form-item label="運輸公司" :rules="[{ required: true, trigger: 'blur' }]"
-                                        :error="formError.disName">
-                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                    </el-form-item>
-                            <el-form-item label="倉庫地址" :rules="[{ required: true, trigger: 'blur' }]"
-                                        :error="formError.disName">
-                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                    </el-form-item>
-                            <el-form-item label="出貨類別" :rules="[{ required: true, trigger: 'blur' }]"
-                                        :error="formError.disName">
-                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                    </el-form-item>
-                            <el-form-item label="貨主名稱" :rules="[{ required: true, trigger: 'blur' }]"
-                                        :error="formError.disName">
-                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                    </el-form-item>
-                            <el-form-item label="貨主發送 mail" :rules="[{ required: true, trigger: 'blur' }]"
-                                        :error="formError.disName">
-                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                    </el-form-item>
-                            <el-form-item label="急單" :rules="[{ required: true, trigger: 'blur' }]"
-                                        :error="formError.disName">
-                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                    </el-form-item>
-                            <el-form-item label="站別" :rules="[{ required: true, trigger: 'blur' }]"
-                                        :error="formError.disName">
-                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                    </el-form-item>
-                            <el-form-item label="是否廢四機" :rules="[{ required: true, trigger: 'blur' }]"
-                                        :error="formError.disName">
-                                        <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
-                                    </el-form-item>
-                        </el-form>
+                        <el-form-item label="運輸公司" :rules="[{ required: true, trigger: 'blur' }]"
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
+                        <el-form-item label="倉庫地址" :rules="[{ required: true, trigger: 'blur' }]"
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
+                        <el-form-item label="出貨類別" :rules="[{ required: true, trigger: 'blur' }]"
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
+                        <el-form-item label="貨主名稱" :rules="[{ required: true, trigger: 'blur' }]"
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
+                        <el-form-item label="貨主發送 mail" :rules="[{ required: true, trigger: 'blur' }]"
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
+                        <el-form-item label="急單" :rules="[{ required: true, trigger: 'blur' }]" :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
+                        <el-form-item label="站別" :rules="[{ required: true, trigger: 'blur' }]" :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
+                        <el-form-item label="是否廢四機" :rules="[{ required: true, trigger: 'blur' }]"
+                            :error="formError.disName">
+                            <el-input v-model="entity.disName" @blur="handleValid()"></el-input>
+                        </el-form-item>
+                    </el-form>
                 </el-tab-pane>
             </el-tabs>
             <el-tabs v-model="activeName" class="demo-tabs" @tab-click="handleClick">
-                    <el-tab-pane label="訂單明細" name="first">
-                        <DataTable
-            :records="master.records"
-            :columns="master.columns"
-            :custom="master.custom"
-            :selection="master.selection"
-            :pageable="pageable"
-            @on-action="tableAction"
-          >
-          </DataTable>
-                            
-                    </el-tab-pane>
-                    <el-tab-pane label="圖片資訊" name="second">
-                        圖片資訊
-                    </el-tab-pane>
-                    <el-tab-pane label="點貨資訊" name="third">
-                        點貨資訊
-                    </el-tab-pane>
-                    <el-tab-pane label="廢四機資訊" name="fourth">
-                        廢四機資訊
-                    </el-tab-pane>
-                </el-tabs>
+                <el-tab-pane label="訂單明細" name="first">
+                    <DataTable :records="master.records" :columns="master.columns" :custom="master.custom"
+                        :selection="master.selection" :pageable="pageable" @on-action="tableAction">
+                    </DataTable>
+
+                </el-tab-pane>
+                <el-tab-pane label="圖片資訊" name="second">
+                    圖片資訊
+                </el-tab-pane>
+                <el-tab-pane label="點貨資訊" name="third">
+                    點貨資訊
+                </el-tab-pane>
+                <el-tab-pane label="廢四機資訊" name="fourth">
+                    廢四機資訊
+                </el-tab-pane>
+            </el-tabs>
         </Dialog>
         <!-- role -->
         <Dialog :title="roleModal.title" :visible="roleModal.visible" :width="'50%'" @on-before-close="roleModalClose">
