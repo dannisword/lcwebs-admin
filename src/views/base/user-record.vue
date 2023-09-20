@@ -223,9 +223,10 @@ const handleChange = (val: any) => {
 <template>
     <el-container v-loading="page.container.isLoading" :element-loading-text="page.container.message">
         <el-main>
-            <!-- <el-text size="small">勾選筆數：Status</el-text> -->
-             <el-collapse v-model="activeNames" @change="handleChange">
+            
+        <el-collapse v-model="activeNames" @change="handleChange">
           <el-collapse-item title="勾選筆數：Status" name="1">
+            <el-scrollbar>
              <div class="status-btn-wrap">
                     <el-badge :value="1" class="item" type="primary">
                         <el-button class="status-btn">
@@ -292,9 +293,9 @@ const handleChange = (val: any) => {
                         </el-button>
                     </el-badge>
                 </div>
+                </el-scrollbar>
           </el-collapse-item>
           </el-collapse>
-          
             <div class="status-btn-wrap">
                 <el-button class="status-btn">
                     <el-icon class="el-icon--bottom">
