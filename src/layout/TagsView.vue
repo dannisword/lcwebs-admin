@@ -41,11 +41,7 @@ const toLastView = (visitedViews: any, view: any) => {
 const click = () => {
   state.visible = false;
 };
-const openMenu = (event: any) => {
-  state.top = 30;
-  state.left = event.x - 30;
-  state.visible = true;
-};
+
 </script>
 
 <template>
@@ -67,7 +63,6 @@ const openMenu = (event: any) => {
             class="tags-view-item"
             :class="isActive(tag) ? 'active' : ''"
             @click="navigate"
-            @contextmenu.prevent="openMenu($event)"
           >
             {{ $t(tag.meta.title) }}
             <Close
@@ -79,16 +74,6 @@ const openMenu = (event: any) => {
         </router-link>
       </div>
     </el-scrollbar>
-    <ul
-      v-show="state.visible"
-      :style="{ left: state.left + 'px', top: state.top + 'px' }"
-      class="contextmenu"
-    >
-      <li @click="click">取消</li>
-      <li @click="click">關閉</li>
-      <li>關閉其他</li>
-      <li>關閉全部</li>
-    </ul>
   </div>
 </template>
 
@@ -100,7 +85,7 @@ const openMenu = (event: any) => {
   --tags-view-contextmenu-background: #e0e0e0;
   --tags-view-contextmenu-hover-background: #e0e0e0;
   margin-top: 8px;
-  height: var(--tag-view-height);
+  height: 28px;
   width: 100%;
   position: relative;
   z-index: 10;

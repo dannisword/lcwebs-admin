@@ -7,7 +7,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
 
     path: "/",
     component: Layout,
-    redirect: "sysUserSetting",
+    redirect: "dashboard",
     children: [
       {
         path: "dashboard",
@@ -16,16 +16,22 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         meta: { title: "Dashboard", affix: false },
       },
       {
-        path: "sysUserSetting",
-        name: "sysUserSetting",
-        component: () => import('../views/base/user-record.vue'),
-        meta: { title: "User Settingd", affix: true },
+        path: "order-records",
+        name: "order-records",
+        component: () => import('../views/base/order-records.vue'),
+        meta: { title: "訂單查詢", affix: true },
       },
       {
         path: "sysRoleSetting",
         name: "sysRoleSetting",
         component: () => import('../views/base/role-record.vue'),
         meta: { title: "Role Settings", affix: true },
+      },
+      {
+        path: "order-base",
+        name: "order-baseg",
+        component: () => import('../views/base/order-base.vue'),
+        meta: { title: "訂單資料", affix: true },
       },
       {
         path: "pcb-detail",

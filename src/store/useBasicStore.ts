@@ -1,9 +1,7 @@
 export const useBasicStore = defineStore('useBasicStore', {
      state: () => {
           return {
-               // 標籤資料
                visitedViews: Array<any>(),
-               // keep alive cachedViews  
                cachedViews: Array<any>()
           }
      },
@@ -50,7 +48,6 @@ export const useBasicStore = defineStore('useBasicStore', {
                          }
                          const index = state.cachedViews.indexOf(view.name);
                          if (index > -1) {
-                              console.log(index);
                               state.cachedViews.splice(index, 1);
                          }
                          resolve([...state.visitedViews])
@@ -68,13 +65,8 @@ export const useBasicStore = defineStore('useBasicStore', {
                })
           },
           delAllVisitedViews() {
-               return new Promise((resolve) => {
-                    this.$patch((state: any) => {
-                         // keep affix tags
-                         state.visitedViews = state.visitedViews.filter((tag: any) => tag.meta?.affix)
-                         resolve([...state.visitedViews])
-                    })
-               })
+               this.visitedViews = [];
+               this.cachedViews = [];
           }
      },
      persist: true

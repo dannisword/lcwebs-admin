@@ -6,18 +6,11 @@ const app = useApp();
 const { navigation } = routeHandle();
 // emit 將資料傳遞到父元件
 const emit = defineEmits(["on-toggle"]);
-const state = reactive({
-  dc: {} as any,
-  dcs: [] as any[],
-});
 
 const toggleClick = () => {
   emit("on-toggle");
 };
 
-onBeforeMount(() => {
-
-});
 const onLogout = () => {
   useApp().logout();
   useBasicStore().delAllVisitedViews();
@@ -42,7 +35,7 @@ const selectChange = (e: any) => {
     <div class="right-menu">
       <el-dropdown trigger="click" size="medium">
         <div class="user-icon">
-          {{ app.user.userName }}
+          admin
           <el-icon><User /></el-icon>
         </div>
         <template #dropdown>

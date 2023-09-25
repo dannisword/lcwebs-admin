@@ -22,7 +22,7 @@ export default defineConfig({
   },
   resolve: {
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.less', '.css'],
-    alias: { '@': path.resolve(__dirname, './src'), }
+    alias: { '@': path.resolve(__dirname, 'src'), }
   },
   plugins: [
     vue(),

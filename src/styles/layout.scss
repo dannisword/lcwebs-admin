@@ -27,7 +27,6 @@
           background-color: var(--el-color-primary-light-9);
           color: var(--el-text-color-primary);
           text-align: center;
-
           height: 150px;
      }
 
@@ -65,4 +64,21 @@
 
 .el-col {
      margin-left: 10px;
+}
+
+
+.el-select {
+     width: 100%;
+}
+
+.form-container {
+     margin-bottom: 10px;
+}
+
+.status-btn-wrap {
+     display: flex;
+     justify-content: start;
+     align-items: center;
+     column-gap: 5px;
+     padding: 10px 0;
 }
