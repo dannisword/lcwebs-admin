@@ -9,9 +9,6 @@ const service = axios.create({
 
 service.interceptors.request.use(
   (config) => {
-    if (config.url == "/api/login/submit") {
-      config.headers["Content-type"] = 'application/x-www-form-urlencoded;charset=utf-8';
-    }
     const token = local.getToken();
     if (token !== null) {
       config.headers["Authorization"] = token;

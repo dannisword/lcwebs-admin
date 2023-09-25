@@ -16,9 +16,7 @@ const onLogout = () => {
   useBasicStore().delAllVisitedViews();
   navigation("/login");
 };
-const selectChange = (e: any) => {
 
-};
 </script>
 
 <template>

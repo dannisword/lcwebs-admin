@@ -23,37 +23,9 @@ export const getUserData = (token: string) => {
  * @returns
  */
 export function URLSearchParams(params: any, num: boolean = true) {
-     /*
      return Object.keys(params).map(function (key) {
           return key + '=' + params[key]
-     }).join('&');*/
-
-     let query = "";
-     for (let [key, value] of Object.entries(params)) {
-          if (typeof value == "number" && value == 0 && num == true) {
-               continue;
-          }
-          if (typeof value == "string" && value == "") {
-               continue;
-          }
-          //
-          if (Array.isArray(value) == true) {
-               for (let item of value as any[]) {
-                    if (query == "") {
-                         query += `${key}=${item}`;
-                    } else {
-                         query += `&${key}=${item}`;
-                    }
-               }
-          } else {
-               if (query == "") {
-                    query += `${key}=${value}`;
-               } else {
-                    query += `&${key}=${value}`;
-               }
-          }
-     }
-     return query;
+     }).join('&');
 }
 
 /**

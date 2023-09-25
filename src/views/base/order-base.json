@@ -55,26 +55,5 @@
                }
           ]
      },
-     "master_records": [],
-     "roles_columns": [
-
-          {
-               "prop": "sysRoleId",
-               "label": "Role ID",
-               "sortable": false,
-               "fixed": false,
-               "minWidth": 180,
-               "align": "left"
-          },
-          {
-               "prop": "disName",
-               "label": "Role Name",
-               "sortable": false,
-               "fixed": false,
-               "minWidth": 180,
-               "align": "left"
-          }
-     ],
-     "roles_custom": [],
-     "roles_records": []
+     "master_records": []
 }

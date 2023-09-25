@@ -1,86 +1,17 @@
 <script setup lang="ts">
-import { ElTable, TabsPaneContext } from "element-plus";
-import { pageHandle } from "../../hooks/page-handle";
-import { routeHandle } from "../../hooks/route-handle";
-import {
-  clone,
-  handleResponse,
-  success,
-  validEmpty,
-  warning,
-} from "../../utils";
-import jsonData from "./order-records.json";
-import data from "../data.json";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
 import { AgGridVue } from "ag-grid-vue3";
 import { GridOptions } from "ag-grid-community/dist/lib/entities/gridOptions";
 
-const page = pageHandle();
-const { navigation} = routeHandle()
+import { pageHandle } from "../../hooks/page-handle";
+import { routeHandle } from "../../hooks/route-handle";
+import jsonData from "./order-records.json";
+const { container } = pageHandle();
+const { navigation } = routeHandle();
 
-const _current = reactive({
-  params: {} as any,
-  entity: {} as any,
-  formError: {} as any,
-});
+const activeNames = ref(["1"]);
 
-const params = reactive({
-  sysUserId: "",
-  disName: "",
-  enable: 1,
-  pageSize: 10,
-  page: 1,
-});
-
-let entity = reactive({
-  sysUserId: "",
-  disName: "",
-  password: "",
-  enabled: 1,
-});
-
-let formError = reactive({
-  sysUserId: "",
-  disName: "",
-  password: "",
-});
-
-const userModal = reactive({
-  title: "訂單資訊",
-  visible: false,
-});
-
-const roleModal = reactive({
-  title: "Select Roles",
-  visible: false,
-});
-
-const pageable = reactive({
-  page: 1,
-  pageSize: 10,
-  totalRow: 0,
-});
-
-const master = reactive({
-  columns: [] as any[],
-  custom: {} as any,
-  records: [] as any,
-  selection: false,
-});
-
-const roles = reactive({
-  columns: [] as any[],
-  custom: {} as any,
-  records: [] as any,
-  selection: true,
-});
-
-
-const multipleTableRef = ref<InstanceType<typeof ElTable>>();
-let user = {} as any;
-let selectedRoles = [] as any;
-let isUpdate = ref(false);
 let columnDefs = [
   { headerName: "是否廢四樓", field: "make" },
   { headerName: "會計回單時間", field: "model" },
@@ -116,18 +47,6 @@ const gridOptions: GridOptions = {
 };
 
 onBeforeMount(() => {
-  _current.params = clone(params);
-  _current.entity = clone(entity);
-  _current.formError = clone(formError);
-
-  master.columns = jsonData.master_columns;
-  master.custom = jsonData.master_custom;
-  master.records = jsonData.master_records;
-
-  roles.columns = jsonData.roles_columns;
-  roles.custom = jsonData.roles_custom;
-  roles.records = jsonData.roles_records;
-
   columnDefs = [
     { headerName: "是否廢四樓", field: "make" },
     { headerName: "會計回單時間", field: "model" },
@@ -143,40 +62,12 @@ onBeforeMount(() => {
     { make: "Ford", model: "Mondeo", price: 32000 },
     { make: "Porsche", model: "Boxster", price: 72000 },
   ];
-
-  load();
 });
 
-const load = () => {};
-
 const onCellClicked = () => {
-/*
-  userModal.title = "訂單資訊";
-  isUpdate.value = false;
-  userModal.visible = true;
-  resetForm();
-  Object.assign(entity, _current.entity);*/
   navigation("/order-base");
 };
 
-
-
-
-const selectionRoles = (val: any) => {
-  selectedRoles = val;
-};
-
-const userModalClose = (val: any) => {
-  userModal.visible = false;
-};
-
-const resetForm = () => {
-  Object.assign(formError, _current.formError);
-};
-
-
-
-const activeNames = ref(["1"]);
 const handleChange = (val: any) => {
   console.log(val);
 };
@@ -184,8 +75,8 @@ const handleChange = (val: any) => {
 
 <template>
   <el-container
-    v-loading="page.container.isLoading"
-    :element-loading-text="page.container.message"
+    v-loading="container.isLoading"
+    :element-loading-text="container.message"
   >
     <el-main>
       <el-collapse v-model="activeNames" @change="handleChange">
@@ -320,14 +211,5 @@ const handleChange = (val: any) => {
       >
       </ag-grid-vue>
     </el-main>
-    <Dialog
-      :title="userModal.title"
-      :visible="userModal.visible"
-      :width="'90%'"
-      @on-before-close="userModalClose"
-    >
-
-    </Dialog>
-
   </el-container>
 </template>

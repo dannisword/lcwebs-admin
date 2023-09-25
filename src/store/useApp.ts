@@ -21,13 +21,9 @@ export const useApp = defineStore('useApp', {
            */
           setToken(response: any) {
                return new Promise((resolve, reject) => {
-                    console.log(response);
                     setToken(response.token);
                     this.accessToken = response.token;
                     this.user = response;
-
-
-                    //this.user = getUserData(response.token);
                     if (this.user) {
                          resolve(true);
                     }
